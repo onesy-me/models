@@ -1,6 +1,6 @@
 {
   "name": "@amaui/models",
-  "version": "1.0.11",
+  "version": "1.0.111",
   "description": "Models",
   "repository": "https://github.com/amaui-org/amaui-models.git",
   "author": "Lazar <lazareric.com@gmail.com>",
@@ -38,11 +38,11 @@
   },
   "dependencies": {
     "@amaui/errors": "^1.0.111",
-    "@amaui/utils": "^1.0.1874",
+    "@amaui/utils": "^1.0.11111",
     "@babel/runtime": "^7.18.3"
   },
   "devDependencies": {
-    "@amaui/test": "^1.0.1114",
+    "@amaui/test": "^1.0.1141",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.17.12",
