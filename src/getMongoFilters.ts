@@ -1,4 +1,4 @@
-import { is } from '@amaui/utils';
+import is from '@amaui/utils/is';
 
 import getMongoFilter from './getMongoFilter';
 import { IFilter, IQueryObject } from './query';

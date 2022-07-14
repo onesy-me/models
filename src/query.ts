@@ -1,7 +1,10 @@
 import express from 'express';
 import { Sort } from 'mongodb';
 
-import { castParam, clamp, decode, is } from '@amaui/utils';
+import is from '@amaui/utils/is';
+import clamp from '@amaui/utils/clamp';
+import decode from '@amaui/utils/decode';
+import castParam from '@amaui/utils/castParam';
 
 import { Base } from './base';
 import getExpressParamValue from './getExpressParamValue';

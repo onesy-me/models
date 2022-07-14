@@ -1,4 +1,4 @@
-import { is } from '@amaui/utils';
+import is from '@amaui/utils/is';
 import { ValidationError } from '@amaui/errors';
 
 import { IQueryKeys } from './models';

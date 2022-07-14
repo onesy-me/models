@@ -1,4 +1,4 @@
-import { is } from '@amaui/utils';
+import is from '@amaui/utils/is';
 
 import { TMatch, TMatchOperator } from './query';
 
