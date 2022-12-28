@@ -89,9 +89,9 @@ export class Query extends Base implements IQuery {
   };
   public settings: IQuerySettings = { type: '$and' };
   public params: IRequestParams = { path: {}, query: {} };
-  public limit = 14;
+  public limit = Query.limit;
   public skip = 0;
-  public sort: Sort = { 'api_meta.added_at': -1 };
+  public sort: Sort = Query.sort;
   public next: string | Record<string, any> = '';
   public previous: string | Record<string, any> = '';
   public total = false;

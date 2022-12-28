@@ -1,6 +1,6 @@
 {
   "name": "@amaui/models",
-  "version": "1.0.11114",
+  "version": "1.0.11117",
   "description": "Models",
   "repository": "https://github.com/amaui-org/amaui-models.git",
   "author": "Lazar <lazareric.com@gmail.com>",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@amaui/errors": "^1.0.111",
-    "@amaui/utils": "^1.0.11411",
+    "@amaui/utils": "^1.0.11447",
     "@babel/runtime": "^7.18.3"
   },
   "devDependencies": {
