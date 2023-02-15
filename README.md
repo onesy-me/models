@@ -39,11 +39,7 @@
 ### Add
 
 ```sh
-  // yarn
-  yarn add @amaui/models
-
-  // npm
-  npm install @amaui/models
+  yarn add @amaui/models --dev
 ```
 
 ### Use
