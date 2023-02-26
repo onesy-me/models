@@ -39,7 +39,7 @@
 ### Add
 
 ```sh
-  yarn add @amaui/models --dev
+  yarn add @amaui/models 
 ```
 
 ### Use
