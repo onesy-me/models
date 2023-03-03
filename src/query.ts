@@ -17,7 +17,7 @@ export type TMatch = {
   [p in TMatchOperator]: object;
 };
 
-export type TFilterOperator = 'less-than' | 'less-than-equal' | 'equal' | 'not-equal' | 'array-all' | 'array-some' | 'starts-with' | 'contains' | 'greater-than-equal' | 'greater-than';
+export type TFilterOperator = 'less-than' | 'less-than-equal' | 'equal' | 'not-equal' | 'array-all' | 'array-some' | 'starts-with' | 'ends-with' | 'contains' | 'greater-than-equal' | 'greater-than';
 
 export interface IFilter {
   field: string;

@@ -28,7 +28,7 @@ group('@amaui/models/mongo-query', () => {
     assert(mongoQuery.hasPrevious).eq(true);
     assert(mongoQuery.hasNext).eq(false);
 
-    assert(mongoQuery.amount).eq(4);
+    assert(mongoQuery.length).eq(4);
     assert(mongoQuery.total).eq(14);
     assert(mongoQuery.skip).eq(1);
     assert(mongoQuery.limit).eq(4);

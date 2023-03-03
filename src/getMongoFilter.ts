@@ -13,9 +13,11 @@ const getMongoFilter = (field: string, operator: string, value: any): Record<str
       return Array.isArray(value) && { $or: value.map(v => ({ [field]: v })) };
 
     case 'starts-with':
-      return { [field]: { $regex: `(?i)^${value}` } };
+      return { [field]: { $regex: `^${value}`, $options: 'i' } };
+    case 'ends-with':
+      return { [field]: { $regex: `${value}$`, $options: 'i' } };
     case 'contains':
-      return { [field]: { $regex: `(?i).*${value}.*` } };
+      return { [field]: { $regex: `.*${value}.*`, $options: 'i' } };
 
     default:
       return { [field]: { [getMongoOperator(operator)]: value } };

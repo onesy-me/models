@@ -17,6 +17,7 @@ group('@amaui/mongo/getMongoFilter', () => {
       getMongoFilter('a.a', 'array-all', [1, 4]),
       getMongoFilter('a.a', 'array-some', [1, 4]),
       getMongoFilter('a.a', 'starts-with', 4),
+      getMongoFilter('a.a', 'ends-with', 4),
       getMongoFilter('a.a', 'contains', 4),
     ]).eql([
       { 'a.a': 4 },
@@ -27,8 +28,9 @@ group('@amaui/mongo/getMongoFilter', () => {
       { 'a.a': { $lte: 4 } },
       { $and: [{ 'a.a': 1 }, { 'a.a': 4 }] },
       { $or: [{ 'a.a': 1 }, { 'a.a': 4 }] },
-      { 'a.a': { "$regex": "(?i)^4" } },
-      { 'a.a': { "$regex": "(?i).*4.*" } },
+      { 'a.a': { "$regex": "^4", $options: 'i' } },
+      { 'a.a': { "$regex": "4$", $options: 'i' } },
+      { 'a.a': { "$regex": ".*4.*", $options: 'i' } },
     ]);
 
   });

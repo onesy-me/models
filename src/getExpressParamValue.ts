@@ -8,7 +8,9 @@ const getExpressParamValue = (req: express.Request, name: string): any | undefin
   } = req;
 
   if (params[name] !== undefined) return params[name];
+
   if (query[name] !== undefined) return query[name];
+
   if (body[name] !== undefined) return body[name];
 };
 

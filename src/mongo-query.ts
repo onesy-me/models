@@ -9,7 +9,7 @@ export interface IMongoQuery {
   hasNext?: boolean;
   hasPrevious?: boolean;
 
-  amount?: number;
+  length?: number;
   total?: number;
   skip?: number;
   limit?: number;
@@ -26,7 +26,7 @@ export class MongoQuery extends Base implements IMongoQuery {
     public hasPrevious?: boolean,
     public hasNext?: boolean,
 
-    public amount?: number,
+    public length?: number,
     public total?: number,
     public skip?: number,
     public limit?: number,

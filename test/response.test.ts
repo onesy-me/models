@@ -94,7 +94,7 @@ group('@amaui/models/response', () => {
         hasNext: false,
         hasPrevious: true,
 
-        amount: 3,
+        length: 3,
         total: 14,
         skip: 1,
         limit: 4

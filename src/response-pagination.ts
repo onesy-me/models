@@ -8,7 +8,7 @@ export interface IResponsePagination {
   hasNext?: boolean;
   hasPrevious?: boolean;
 
-  amount?: number;
+  length?: number;
   total?: number;
   skip?: number;
   limit?: number;
@@ -23,7 +23,7 @@ export class ResponsePagination extends Base implements IResponsePagination {
     public hasNext?: boolean,
     public hasPrevious?: boolean,
 
-    public amount?: number,
+    public length?: number,
     public total?: number,
     public skip?: number,
     public limit?: number,

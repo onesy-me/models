@@ -27,7 +27,7 @@ group('@amaui/models/response-pagination', () => {
       assert(responsePagination.hasPrevious).eq(true);
       assert(responsePagination.hasNext).eq(false);
 
-      assert(responsePagination.amount).eq(4);
+      assert(responsePagination.length).eq(4);
       assert(responsePagination.total).eq(14);
       assert(responsePagination.skip).eq(1);
       assert(responsePagination.limit).eq(4);
@@ -56,7 +56,7 @@ group('@amaui/models/response-pagination', () => {
       assert(responsePagination.hasPrevious).eq(true);
       assert(responsePagination.hasNext).eq(false);
 
-      assert(responsePagination.amount).eq(4);
+      assert(responsePagination.length).eq(4);
       assert(responsePagination.total).eq(14);
       assert(responsePagination.skip).eq(1);
       assert(responsePagination.limit).eq(4);
