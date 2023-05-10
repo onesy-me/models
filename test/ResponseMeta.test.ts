@@ -3,7 +3,7 @@ import { assert } from '@amaui/test';
 
 import { ResponseMeta } from '../src';
 
-group('@amaui/models/response-meta', () => {
+group('ResponseMeta', () => {
 
   to('ResponseMeta', () => {
     const responseMeta = new ResponseMeta(204, 'a');

@@ -3,7 +3,7 @@ import { assert } from '@amaui/test';
 
 import { ResponsePagination } from '../src';
 
-group('@amaui/models/response-pagination', () => {
+group('ResponsePagination', () => {
 
   group('ResponsePagination', () => {
 

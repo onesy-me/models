@@ -1,5 +1,5 @@
 import { Base } from './base';
-import { MongoQuery } from './mongo-query';
+import { MongoQuery } from './MongoQuery';
 
 export interface IResponsePagination {
   next?: string;

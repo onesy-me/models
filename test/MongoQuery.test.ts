@@ -3,7 +3,7 @@ import { assert } from '@amaui/test';
 
 import { MongoQuery } from '../src';
 
-group('@amaui/models/mongo-query', () => {
+group('MongoQuery', () => {
 
   to('MongoQuery', () => {
     const mongoQuery = new MongoQuery(

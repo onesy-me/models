@@ -63,6 +63,10 @@ export type IQueryMeta = {
   [p in TQueryMetaProperty]?: any;
 };
 
+export interface IKeys {
+  allowed: string[];
+}
+
 export interface IQuery {
   queries?: IQueryObjects;
 
@@ -97,7 +101,7 @@ export class Query extends Base implements IQuery {
   public total = false;
   public projection?: object;
 
-  public static keys = {
+  public static keys: IKeys = {
     allowed: [],
   };
   public static collections: string[] = [];

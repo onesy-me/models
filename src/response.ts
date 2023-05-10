@@ -2,9 +2,9 @@ import express from 'express';
 
 import { Base } from './base';
 import { TObject } from './models';
-import { MongoQuery } from './mongo-query';
-import { IResponseMeta, ResponseMeta } from './response-meta';
-import { IResponsePagination, ResponsePagination } from './response-pagination';
+import { MongoQuery } from './MongoQuery';
+import { IResponseMeta, ResponseMeta } from './ResponseMeta';
+import { IResponsePagination, ResponsePagination } from './ResponsePagination';
 
 export interface IResponse {
   meta: IResponseMeta;

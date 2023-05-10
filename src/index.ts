@@ -2,9 +2,9 @@ export * from './models';
 export * from './base';
 export * from './query';
 export * from './response';
-export * from './mongo-query';
-export * from './response-meta';
-export * from './response-pagination';
+export * from './MongoQuery';
+export * from './ResponseMeta';
+export * from './ResponsePagination';
 
 export { default as getExpressParamValue } from './getExpressParamValue';
 export { default as validateMongoQuery } from './validateMongoQuery';
