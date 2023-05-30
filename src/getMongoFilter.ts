@@ -17,7 +17,7 @@ const getMongoFilter = (field: string, operator: string, value: any): Record<str
     case 'ends-with':
       return { [field]: { $regex: `${value}$`, $options: 'i' } };
     case 'contains':
-      return { [field]: { $regex: `.*${value}.*`, $options: 'i' } };
+      return { [field]: { $regex: value, $options: 'i' } };
 
     default:
       return { [field]: { [getMongoOperator(operator)]: value } };
