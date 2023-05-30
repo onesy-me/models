@@ -12,3 +12,14 @@ export type TObject = Record<string, any>;
 export interface IQueryKeys {
   allowed: any[];
 }
+
+export interface IMongoSearchManyAdditional {
+  pre?: Array<object>;
+  prePagination?: Array<object>;
+  post?: Array<object>;
+}
+
+export interface IMongoSearchOneAdditional {
+  pre?: Array<object>;
+  post?: Array<object>;
+}
