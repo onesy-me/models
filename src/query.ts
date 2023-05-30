@@ -106,6 +106,8 @@ export class Query extends Base implements IQuery {
   };
   public static collections: string[] = [];
   public static limit = 14;
+  public static LIMIT_MIN = 1;
+  public static LIMIT_MAX = 40;
   public static sort: Sort = { 'api_meta.added_at': -1 };
 
   constructor(
@@ -149,7 +151,7 @@ export class Query extends Base implements IQuery {
   public static getMetaValue(value: any, type = 'limit'): any {
     switch (type) {
       case 'limit':
-        return is('number', value) ? clamp(value, 1, 40) : this.limit;
+        return is('number', value) ? clamp(value, Query.LIMIT_MIN, Query.LIMIT_MAX) : this.limit;
 
       case 'sort':
         return value;

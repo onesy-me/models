@@ -1,14 +1,14 @@
 import is from '@amaui/utils/is';
 
-import { TMatch, TMatchOperator } from './query';
+import { TMatch, TMatchOperator } from './Query';
 
-const getMongoMatch = (query: Array<object>, type: TMatchOperator = '$and'): Array<TMatch> => {
+const getMongoMatch = (query: Array<object>, operator: TMatchOperator = '$and'): Array<TMatch> => {
   const pipeline = [];
 
   if (is('array', query) && !!query.length) {
     pipeline.push({
       $match: {
-        [type]: query,
+        [operator]: query,
       },
     });
   }

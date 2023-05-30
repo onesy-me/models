@@ -2,7 +2,7 @@ import express from 'express';
 
 import { Base } from './base';
 import { TObject } from './models';
-import { MongoQuery } from './MongoQuery';
+import { MongoResponse } from './MongoResponse';
 import { IResponseMeta, ResponseMeta } from './ResponseMeta';
 import { IResponsePagination, ResponsePagination } from './ResponsePagination';
 
@@ -69,7 +69,7 @@ export class Response extends Base {
     }
   }
 
-  public static fromQuery(value: MongoQuery): Response {
+  public static fromQuery(value: MongoResponse): Response {
     const pagination = ResponsePagination.fromMongoQuery(value);
 
     const meta = new ResponseMeta(200);

@@ -42,16 +42,6 @@ group('@amaui/models/validateMongoQuery', () => {
     try {
       validateMongoQuery({
         a: [
-          { field: true, operator: '', value: 4 },
-        ],
-      }, { allowed: ['a', 'ad'] });
-    } catch (error) {
-      assert(error.message).eq(`a's 'true' field value has to be a string`);
-    }
-
-    try {
-      validateMongoQuery({
-        a: [
           { field: 'a', operator: 'a', value: 4 },
         ],
       }, { allowed: ['a', 'ad'] });

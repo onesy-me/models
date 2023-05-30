@@ -1,8 +1,8 @@
 export * from './models';
 export * from './base';
-export * from './query';
-export * from './response';
-export * from './MongoQuery';
+export * from './Query';
+export * from './Response';
+export * from './MongoResponse';
 export * from './ResponseMeta';
 export * from './ResponsePagination';
 

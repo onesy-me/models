@@ -1,6 +1,6 @@
 import { Base } from './base';
 
-export interface IMongoQuery {
+export interface IMongoResponse {
   response: any[];
 
   next?: string;
@@ -9,13 +9,13 @@ export interface IMongoQuery {
   hasNext?: boolean;
   hasPrevious?: boolean;
 
-  length?: number;
+  size?: number;
   total?: number;
   skip?: number;
   limit?: number;
 }
 
-export class MongoQuery extends Base implements IMongoQuery {
+export class MongoResponse extends Base implements IMongoResponse {
 
   constructor(
     public response: any[] = [],
@@ -26,7 +26,7 @@ export class MongoQuery extends Base implements IMongoQuery {
     public hasPrevious?: boolean,
     public hasNext?: boolean,
 
-    public length?: number,
+    public size?: number,
     public total?: number,
     public skip?: number,
     public limit?: number,

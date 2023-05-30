@@ -1,5 +1,5 @@
 import { Base } from './base';
-import { MongoQuery } from './MongoQuery';
+import { MongoResponse } from './MongoResponse';
 
 export interface IResponsePagination {
   next?: string;
@@ -31,7 +31,7 @@ export class ResponsePagination extends Base implements IResponsePagination {
     super();
   }
 
-  public static fromMongoQuery(value: MongoQuery): ResponsePagination {
+  public static fromMongoQuery(value: MongoResponse): ResponsePagination {
     return new ResponsePagination(
       value.next,
       value.previous,

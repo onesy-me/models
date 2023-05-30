@@ -1,7 +1,7 @@
 import is from '@amaui/utils/is';
 
 import getMongoFilter from './getMongoFilter';
-import { IFilter, IQueryObject } from './query';
+import { IFilter, IQueryObject } from './Query';
 
 const getMongoFilters = (
   value_: IQueryObject<IFilter>,
