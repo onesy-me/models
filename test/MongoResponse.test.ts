@@ -14,6 +14,7 @@ group('MongoResponse', () => {
       true,
       false,
 
+      { added_at: -1 },
       4,
       14,
       1,
@@ -28,10 +29,11 @@ group('MongoResponse', () => {
     assert(mongoResponse.hasPrevious).eq(true);
     assert(mongoResponse.hasNext).eq(false);
 
-    assert(mongoResponse.length).eq(4);
-    assert(mongoResponse.total).eq(14);
+    assert(mongoResponse.sort).eql({ added_at: -1 });
+    assert(mongoResponse.size).eq(4);
     assert(mongoResponse.skip).eq(1);
     assert(mongoResponse.limit).eq(4);
+    assert(mongoResponse.total).eq(14);
 
     assert(mongoResponse.clean instanceof Function).eq(true);
   });
