@@ -43,6 +43,8 @@ export interface IQueryFind {
   [key: string]: object;
 }
 
+export type TQueryQueriesKey = 'search' | 'api' | 'permissions' | 'aggregate' | 'find';
+
 export interface IQueryObjects {
   search?: IQueryObject;
   api?: IQueryObject;
@@ -86,8 +88,8 @@ export interface IQuery {
 export class Query extends Base implements IQuery {
   public queries: IQueryObjects = {
     search: {},
-    permissions: {},
     api: {},
+    permissions: {},
     aggregate: {},
     find: {},
   };
@@ -198,13 +200,22 @@ export class Query extends Base implements IQuery {
     return new Query(query);
   }
 
-  public addToAllQueries(filters: any[] | object, type = 'api') {
+  public addToQuery(filters: any[] | object, collection: string, type: TQueryQueriesKey = 'api') {
+    if (is('array', this.queries[type]?.[collection])) (this.queries[type][collection] as any[]).push(...(filters as any[]));
+
+    if (is('object', this.queries[type]?.[collection])) this.queries[type][collection] = {
+      ...this.queries[type][collection],
+      ...filters
+    };
+  }
+
+  public addToAllQueries(filters: any[] | object, type: TQueryQueriesKey = 'api') {
     Object.keys(this.queries[type]).forEach(collection => {
-      if (is('array', this.queries[type][collection])) this.queries[type][collection].push(...(filters as any[]));
+      if (is('array', this.queries[type][collection])) (this.queries[type][collection] as any).push(...(filters as any[]));
 
       if (is('object', this.queries[type][collection])) this.queries[type][collection] = {
         ...this.queries[type][collection],
-        ...filters,
+        ...filters
       };
     });
   }
