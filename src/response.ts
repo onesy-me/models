@@ -13,8 +13,12 @@ export interface IResponse {
 }
 
 export class Response extends Base {
+  public static allowed = {
+    object: [],
+    created: []
+  };
 
-  constructor(
+  public constructor(
     public response: any,
     public meta: ResponseMeta,
     public pagination?: ResponsePagination
@@ -29,20 +33,26 @@ export class Response extends Base {
 
   public static fromObject(
     value: TObject,
-    original = false
+    original = false,
+    meta_?: ResponseMeta,
+    options = {
+      onlyKeys: true
+    }
   ): Response {
     try {
       let response: any = {};
-      const allowedKeys = ['_id', 'meta', 'data', 'api_meta'];
 
-      const meta = new ResponseMeta(200);
+      const meta = meta_ ? meta_ : new ResponseMeta(200);
 
-      allowedKeys.forEach(key => {
-        if (
-          value?.hasOwnProperty(key) &&
-          value[key] !== undefined
-        ) response[key] = value[key];
-      });
+      if (options?.onlyKeys && !!Response.allowed?.object?.length) {
+        Response.allowed.object.forEach(key => {
+          if (
+            value?.hasOwnProperty(key) &&
+            value[key] !== undefined
+          ) response[key] = value[key];
+        });
+      }
+      else response = { ...value };
 
       if (original) response = value;
 
@@ -53,14 +63,27 @@ export class Response extends Base {
     }
   }
 
-  public static fromCreated(value: TObject): Response {
+  public static fromCreated(
+    value: TObject,
+    meta_?: ResponseMeta,
+    options = {
+      onlyKeys: true
+    }
+  ): Response {
     try {
-      const response: any = {};
+      let response: any = {};
 
-      const meta = new ResponseMeta(201, 'Created');
+      const meta = meta_ ? meta_ : new ResponseMeta(201, 'Created');
 
-      if (value._id) response._id = value._id;
-      if (value.api_meta) response.api_meta = value.api_meta;
+      if (options.onlyKeys && !!Response.allowed.created?.length) {
+        Response.allowed.created.forEach(key => {
+          if (
+            value?.hasOwnProperty(key) &&
+            value[key] !== undefined
+          ) response[key] = value[key];
+        });
+      }
+      else response = { ...value };
 
       return new Response(response, meta);
     }
@@ -69,10 +92,10 @@ export class Response extends Base {
     }
   }
 
-  public static fromQuery(value: MongoResponse): Response {
+  public static fromQuery(value: MongoResponse, meta_?: ResponseMeta): Response {
     const pagination = ResponsePagination.fromMongoQuery(value);
 
-    const meta = new ResponseMeta(200);
+    const meta = meta_ ? meta_ : new ResponseMeta(200);
 
     let response: any;
 
@@ -86,17 +109,15 @@ export class Response extends Base {
     return new Response(response, meta, pagination);
   }
 
-  public static fromAny(value: any, moreMeta?: any): Response {
+  public static fromAny(value: any, meta_?: ResponseMeta): Response {
     let response: any;
 
-    let meta = new ResponseMeta(200);
+    let meta = meta_ ? meta_ : new ResponseMeta(200);
 
     if (value !== undefined) response = value;
     else {
       meta.message = 'No result';
     }
-
-    if (typeof moreMeta === 'object') meta = { ...meta, ...moreMeta };
 
     return new Response(response, meta);
   }

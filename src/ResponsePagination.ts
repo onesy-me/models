@@ -1,5 +1,5 @@
 import { Base } from './base';
-import { MongoResponse } from './MongoResponse';
+import { MongoResponse, TMongoResponseSort } from './MongoResponse';
 
 export interface IResponsePagination {
   next?: string;
@@ -8,7 +8,8 @@ export interface IResponsePagination {
   hasNext?: boolean;
   hasPrevious?: boolean;
 
-  length?: number;
+  sort?: TMongoResponseSort;
+  size?: number;
   total?: number;
   skip?: number;
   limit?: number;
@@ -23,7 +24,8 @@ export class ResponsePagination extends Base implements IResponsePagination {
     public hasNext?: boolean,
     public hasPrevious?: boolean,
 
-    public length?: number,
+    public sort?: TMongoResponseSort,
+    public size?: number,
     public total?: number,
     public skip?: number,
     public limit?: number,
@@ -37,7 +39,8 @@ export class ResponsePagination extends Base implements IResponsePagination {
       value.previous,
       value.hasNext,
       value.hasPrevious,
-      value.response && value.response.length,
+      value.sort,
+      value.size !== undefined ? value.size : value.response?.length,
       value.total,
       value.skip,
       value.limit
