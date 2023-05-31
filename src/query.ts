@@ -105,7 +105,7 @@ export class Query extends Base implements IQuery {
     allowed: [],
   };
   public static collections: string[] = [];
-  public static limit = 14;
+  public static limit = 15;
   public static LIMIT_MIN = 1;
   public static LIMIT_MAX = 40;
   public static sort: Sort = { 'api_meta.added_at': -1 };
