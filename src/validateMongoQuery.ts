@@ -8,6 +8,9 @@ const validateMongoQuery = (value: object, keys: IQueryKeys = { allowed: [] }): 
   if (!is('object', value)) throw new ValidationError('Query has to be an object, with collection being properties');
 
   for (const key of Object.keys(value)) {
+    // query
+    if (['query'].includes(key)) continue;
+
     if (keys.allowed.indexOf(key) === -1) throw new ValidationError(`Query property can only be one of the following values: ${keys.allowed.join(', ')}`);
 
     const collection = value[key];

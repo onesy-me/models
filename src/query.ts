@@ -70,6 +70,8 @@ export interface IKeys {
 }
 
 export interface IQuery {
+  query?: any;
+
   queries?: IQueryObjects;
 
   setting?: IQuerySettings;
@@ -93,6 +95,7 @@ export class Query extends Base implements IQuery {
     aggregate: {},
     find: {},
   };
+  public query: any;
   public settings: IQuerySettings = { type: '$and' };
   public params: IRequestParams = { path: {}, query: {} };
   public limit = Query.limit;
@@ -179,6 +182,9 @@ export class Query extends Base implements IQuery {
     query.params.query = req.query;
 
     const requestQuery = getExpressParamValue(req, 'query');
+
+    // query
+    query.query = requestQuery.query;
 
     query.settings = getExpressParamValue(req, 'settings') || { type: '$and' };
 
