@@ -15,7 +15,9 @@ export interface IResponse {
 export class Response extends Base {
   public static allowed = {
     object: [],
-    created: []
+    created: [],
+    updated: [],
+    removed: []
   };
 
   public constructor(
@@ -33,10 +35,10 @@ export class Response extends Base {
 
   public static fromObject(
     value: TObject,
-    original = false,
     meta_?: ResponseMeta,
     options = {
-      onlyKeys: true
+      onlyKeys: true,
+      original: false
     }
   ): Response {
     try {
@@ -54,7 +56,7 @@ export class Response extends Base {
       }
       else response = { ...value };
 
-      if (original) response = value;
+      if (options.original) response = value;
 
       return new Response(response, meta);
     }
@@ -63,20 +65,81 @@ export class Response extends Base {
     }
   }
 
-  public static fromCreated(
+  public static fromAdded(
     value: TObject,
     meta_?: ResponseMeta,
     options = {
-      onlyKeys: true
+      onlyKeys: true,
+      original: false
     }
   ): Response {
     try {
       let response: any = {};
 
-      const meta = meta_ ? meta_ : new ResponseMeta(201, 'Created');
+      const meta = meta_ ? meta_ : new ResponseMeta(201, 'Added');
 
       if (options.onlyKeys && !!Response.allowed.created?.length) {
         Response.allowed.created.forEach(key => {
+          if (
+            value?.hasOwnProperty(key) &&
+            value[key] !== undefined
+          ) response[key] = value[key];
+        });
+      }
+      else response = { ...value };
+
+      return new Response(response, meta);
+    }
+    catch (error) {
+      throw error;
+    }
+  }
+
+  public static fromUpdated(
+    value: TObject,
+    meta_?: ResponseMeta,
+    options = {
+      onlyKeys: true,
+      original: false
+    }
+  ): Response {
+    try {
+      let response: any = {};
+
+      const meta = meta_ ? meta_ : new ResponseMeta(200, 'Updated');
+
+      if (options.onlyKeys && !!Response.allowed.updated?.length) {
+        Response.allowed.updated.forEach(key => {
+          if (
+            value?.hasOwnProperty(key) &&
+            value[key] !== undefined
+          ) response[key] = value[key];
+        });
+      }
+      else response = { ...value };
+
+      return new Response(response, meta);
+    }
+    catch (error) {
+      throw error;
+    }
+  }
+
+  public static fromRemoved(
+    value: TObject,
+    meta_?: ResponseMeta,
+    options = {
+      onlyKeys: true,
+      original: false
+    }
+  ): Response {
+    try {
+      let response: any = {};
+
+      const meta = meta_ ? meta_ : new ResponseMeta(200, 'Removed');
+
+      if (options.onlyKeys && !!Response.allowed.removed?.length) {
+        Response.allowed.removed.forEach(key => {
           if (
             value?.hasOwnProperty(key) &&
             value[key] !== undefined
