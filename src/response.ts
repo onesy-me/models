@@ -15,7 +15,7 @@ export interface IResponse {
 export class Response extends Base {
   public static allowed = {
     object: [],
-    created: [],
+    added: [],
     updated: [],
     removed: []
   };
@@ -78,8 +78,8 @@ export class Response extends Base {
 
       const meta = meta_ ? meta_ : new ResponseMeta(201, 'Added');
 
-      if (options.onlyKeys && !!Response.allowed.created?.length) {
-        Response.allowed.created.forEach(key => {
+      if (options.onlyKeys && !!Response.allowed.added?.length) {
+        Response.allowed.added.forEach(key => {
           if (
             value?.hasOwnProperty(key) &&
             value[key] !== undefined
