@@ -2,8 +2,8 @@ import { Base } from './base';
 
 export type TMongoResponseSort = Record<string, 1 | -1 | 'asc' | 'desc' | 'ascending' | 'descending'>;
 
-export interface IMongoResponse {
-  response: any[];
+export interface IMongoResponse<IModel = any> {
+  response: IModel[];
 
   next?: string;
   previous?: string;
@@ -18,10 +18,10 @@ export interface IMongoResponse {
   limit?: number;
 }
 
-export class MongoResponse extends Base implements IMongoResponse {
+export class MongoResponse<IModel = any> extends Base implements IMongoResponse<IModel> {
 
   constructor(
-    public response: any[] = [],
+    public response: IModel[] = [],
 
     public next?: string,
     public previous?: string,
