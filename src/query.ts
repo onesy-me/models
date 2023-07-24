@@ -5,6 +5,7 @@ import is from '@amaui/utils/is';
 import clamp from '@amaui/utils/clamp';
 import decode from '@amaui/utils/decode';
 import castParam from '@amaui/utils/castParam';
+import unflattenObject from '@amaui/utils/unflattenObject';
 
 import { Base } from './base';
 import getExpressParamValue from './getExpressParamValue';
@@ -179,14 +180,22 @@ export class Query extends Base implements IQuery {
     const query = new Query();
 
     query.params.path = req.params;
-    query.params.query = req.query;
 
-    const requestQuery = getExpressParamValue(req, 'query');
+    query.params.query = {};
+
+    Object.keys(req.query).forEach(item => {
+      // To decode properties that are flatten path with . notiation
+      query.params.query[decodeURIComponent(item)] = decodeURIComponent(req.query[item] as string);
+    });
+
+    const objectFromQueryParams: any = unflattenObject(query.params.query);
+
+    const requestQuery = req.body.query || objectFromQueryParams.query;
 
     // query
     query.query = requestQuery.query;
 
-    query.settings = getExpressParamValue(req, 'settings') || { type: '$and' };
+    query.settings = req.body.settings || objectFromQueryParams.settings || { type: '$and' };
 
     if (requestQuery && Object.keys(requestQuery).length) {
       validateMongoQuery(requestQuery, Query.keys);

@@ -1,5 +1,7 @@
 import express from 'express';
 
+import { is } from '@amaui/utils';
+
 import { Base } from './base';
 import { TObject } from './models';
 import { MongoResponse } from './MongoResponse';
@@ -34,7 +36,7 @@ export class Response extends Base {
   }
 
   public static fromObject(
-    value: TObject,
+    value_: TObject,
     meta_?: ResponseMeta,
     options = {
       onlyKeys: true,
@@ -42,6 +44,8 @@ export class Response extends Base {
     }
   ): Response {
     try {
+      const value = Response.value(value_);
+
       let response: any = {};
 
       const meta = meta_ ? meta_ : new ResponseMeta(200);
@@ -66,7 +70,7 @@ export class Response extends Base {
   }
 
   public static fromAdded(
-    value: TObject,
+    value_: TObject,
     meta_?: ResponseMeta,
     options = {
       onlyKeys: true,
@@ -74,6 +78,8 @@ export class Response extends Base {
     }
   ): Response {
     try {
+      const value = Response.value(value_);
+
       let response: any = {};
 
       const meta = meta_ ? meta_ : new ResponseMeta(201, 'Added');
@@ -96,7 +102,7 @@ export class Response extends Base {
   }
 
   public static fromUpdated(
-    value: TObject,
+    value_: TObject,
     meta_?: ResponseMeta,
     options = {
       onlyKeys: true,
@@ -104,6 +110,8 @@ export class Response extends Base {
     }
   ): Response {
     try {
+      const value = Response.value(value_);
+
       let response: any = {};
 
       const meta = meta_ ? meta_ : new ResponseMeta(200, 'Updated');
@@ -126,7 +134,7 @@ export class Response extends Base {
   }
 
   public static fromRemoved(
-    value: TObject,
+    value_: TObject,
     meta_?: ResponseMeta,
     options = {
       onlyKeys: true,
@@ -134,6 +142,8 @@ export class Response extends Base {
     }
   ): Response {
     try {
+      const value = Response.value(value_);
+
       let response: any = {};
 
       const meta = meta_ ? meta_ : new ResponseMeta(200, 'Removed');
@@ -162,7 +172,7 @@ export class Response extends Base {
 
     let response: any;
 
-    if (value?.response?.length) response = value.response;
+    if (value?.response?.length) response = value.response.map(item => Response.value(item));
     else {
       response = [];
 
@@ -172,7 +182,9 @@ export class Response extends Base {
     return new Response(response, meta, pagination);
   }
 
-  public static fromAny(value: any, meta_?: ResponseMeta): Response {
+  public static fromAny(value_: any, meta_?: ResponseMeta): Response {
+    const value = Response.value(value_);
+
     let response: any;
 
     let meta = meta_ ? meta_ : new ResponseMeta(200);
@@ -187,5 +199,15 @@ export class Response extends Base {
 
   public static fromExpress(res: express.Response, data = {}, status = 200) {
     return res.status(status).json(data);
+  }
+
+  public static value(value: any) {
+    // value simple
+    if (is('simple', value)) return value;
+
+    // Getter object method
+    if (is('function', value?.toObjectResponse)) return value.toObjectResponse();
+
+    return { ...value };
   }
 }
