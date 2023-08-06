@@ -176,7 +176,7 @@ export class Response extends Base {
     else {
       response = [];
 
-      meta.message = 'No response';
+      if (!meta.message) meta.message = 'No response';
     }
 
     return new Response(response, meta, pagination);
@@ -190,9 +190,7 @@ export class Response extends Base {
     let meta = meta_ ? meta_ : new ResponseMeta(200);
 
     if (value !== undefined) response = value;
-    else {
-      meta.message = 'No result';
-    }
+    else if (!meta.message) meta.message = 'No result';
 
     return new Response(response, meta);
   }
