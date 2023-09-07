@@ -190,12 +190,12 @@ export class Query extends Base implements IQuery {
 
     const objectFromQueryParams: any = unflattenObject(query.params.query);
 
-    const requestQuery = req.body.query || objectFromQueryParams.query;
+    const requestQuery = req.body?.query || objectFromQueryParams?.query || {};
 
     // query
     query.query = requestQuery.query;
 
-    query.settings = req.body.settings || objectFromQueryParams.settings || { type: '$and' };
+    query.settings = req.body?.settings || objectFromQueryParams.settings || { type: '$and' };
 
     if (requestQuery && Object.keys(requestQuery).length) {
       validateMongoQuery(requestQuery, Query.keys);
