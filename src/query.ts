@@ -121,7 +121,11 @@ export class Query extends Base implements IQuery {
   ) {
     super();
 
-    if (query?.queries) {
+    // query
+    if (query?.query !== undefined) this.query = query.query;
+
+    // queries
+    if (query?.queries !== undefined) {
       if (query.queries.search) this.queries.search = query.queries.search;
       if (query.queries.api) this.queries.api = query.queries.api;
       if (query.queries.aggregate) this.queries.aggregate = query.queries.aggregate;
@@ -176,7 +180,7 @@ export class Query extends Base implements IQuery {
     }
   }
 
-  public static fromRequest(req: express.Request): Query {
+  public static fromRequest(req: express.Request, validate = false): Query {
     const query = new Query();
 
     query.params.path = req.params;
@@ -193,11 +197,12 @@ export class Query extends Base implements IQuery {
     const requestQuery = req.body?.query || objectFromQueryParams?.query || {};
 
     // query
-    query.query = requestQuery.query;
+    query.query = requestQuery;
 
     query.settings = req.body?.settings || objectFromQueryParams.settings || { type: '$and' };
 
-    if (requestQuery && Object.keys(requestQuery).length) {
+    // validate
+    if (validate && requestQuery && Object.keys(requestQuery).length) {
       validateMongoQuery(requestQuery, Query.keys);
 
       query.queries.search = { ...query.queries.search, ...getMongoFilters(requestQuery) };
