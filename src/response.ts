@@ -179,6 +179,8 @@ export class Response extends Base {
       if (!meta.message) meta.message = 'No response';
     }
 
+    if (value.options) meta.options = value.options;
+
     return new Response(response, meta, pagination);
   }
 

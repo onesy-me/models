@@ -2,6 +2,8 @@ import { Base } from './base';
 
 export type TMongoResponseSort = Record<string, 1 | -1 | 'asc' | 'desc' | 'ascending' | 'descending'>;
 
+export type IMongoResponseOptions = Record<string, any[]>;
+
 export interface IMongoResponse<IModel = any> {
   response: IModel[];
 
@@ -16,6 +18,8 @@ export interface IMongoResponse<IModel = any> {
   total?: number;
   skip?: number;
   limit?: number;
+
+  options?: IMongoResponseOptions;
 }
 
 export class MongoResponse<IModel = any> extends Base implements IMongoResponse<IModel> {
@@ -34,6 +38,8 @@ export class MongoResponse<IModel = any> extends Base implements IMongoResponse<
     public total?: number,
     public skip?: number,
     public limit?: number,
+
+    public options?: IMongoResponseOptions
   ) {
     super();
   }
