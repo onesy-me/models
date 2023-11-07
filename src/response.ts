@@ -30,6 +30,7 @@ export class Response extends Base {
     super();
 
     if (meta?.clean) meta.clean();
+
     if (pagination?.clean) pagination.clean();
 
     this.clean();
