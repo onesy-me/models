@@ -185,9 +185,7 @@ export class Response extends Base {
     return new Response(response, meta, pagination);
   }
 
-  public static fromAny(value_: any, meta_?: ResponseMeta): Response {
-    const value = Response.value(value_);
-
+  public static fromAny(value: any, meta_?: ResponseMeta): Response {
     let response: any;
 
     let meta = meta_ ? meta_ : new ResponseMeta(200);
