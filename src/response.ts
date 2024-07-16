@@ -42,10 +42,11 @@ export class Response extends Base {
     options = {
       onlyKeys: true,
       original: false
-    }
+    },
+    req?: any
   ): Response {
     try {
-      const value = Response.value(value_);
+      const value = Response.value(value_, req);
 
       let response: any = {};
 
@@ -76,10 +77,11 @@ export class Response extends Base {
     options = {
       onlyKeys: true,
       original: false
-    }
+    },
+    req?: any
   ): Response {
     try {
-      const value = Response.value(value_);
+      const value = Response.value(value_, req);
 
       let response: any = {};
 
@@ -108,10 +110,11 @@ export class Response extends Base {
     options = {
       onlyKeys: true,
       original: false
-    }
+    },
+    req?: any
   ): Response {
     try {
-      const value = Response.value(value_);
+      const value = Response.value(value_, req);
 
       let response: any = {};
 
@@ -140,10 +143,11 @@ export class Response extends Base {
     options = {
       onlyKeys: true,
       original: false
-    }
+    },
+    req?: any
   ): Response {
     try {
-      const value = Response.value(value_);
+      const value = Response.value(value_, req);
 
       let response: any = {};
 
@@ -166,14 +170,14 @@ export class Response extends Base {
     }
   }
 
-  public static fromQuery(value: MongoResponse, meta_?: ResponseMeta): Response {
+  public static fromQuery(value: MongoResponse, meta_?: ResponseMeta, req?: any): Response {
     const pagination = ResponsePagination.fromMongoQuery(value);
 
     const meta = meta_ ? meta_ : new ResponseMeta(200);
 
     let response: any;
 
-    if (value?.response?.length) response = value.response.map(item => Response.value(item));
+    if (value?.response?.length) response = value.response.map(item => Response.value(item, req));
     else {
       response = [];
 
@@ -185,7 +189,7 @@ export class Response extends Base {
     return new Response(response, meta, pagination);
   }
 
-  public static fromAny(value: any, meta_?: ResponseMeta): Response {
+  public static fromAny(value: any, meta_?: ResponseMeta, req?: any): Response {
     let response: any;
 
     let meta = meta_ ? meta_ : new ResponseMeta(200);
@@ -196,16 +200,16 @@ export class Response extends Base {
     return new Response(response, meta);
   }
 
-  public static fromExpress(res: express.Response, data = {}, status = 200) {
+  public static fromExpress(res: express.Response, data = {}, status = 200, req: any) {
     return res.status(status).json(data);
   }
 
-  public static value(value: any) {
+  public static value(value: any, req?: any) {
     // value simple
     if (is('simple', value)) return value;
 
     // Getter object method
-    if (is('function', value?.toObjectResponse)) return value.toObjectResponse();
+    if (is('function', value?.toObjectResponse)) return value.toObjectResponse(req);
 
     return { ...value };
   }
