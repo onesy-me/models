@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { is } from '@amaui/utils';
+import { is } from '@onesy/utils';
 
 import { Base } from './base';
 import { TObject } from './models';

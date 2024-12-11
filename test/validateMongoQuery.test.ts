@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { validateMongoQuery } from '../src';
 
-group('@amaui/models/validateMongoQuery', () => {
+group('@onesy/models/validateMongoQuery', () => {
 
   to('validateMongoQuery', async () => {
     try {

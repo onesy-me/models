@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { Query } from '../src';
 
-group('@amaui/models/query', () => {
+group('@onesy/models/query', () => {
 
   pre(() => {
     Query.keys.allowed = ['a', 'ad'];

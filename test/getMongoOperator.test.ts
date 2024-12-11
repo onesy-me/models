@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { getMongoOperator } from '../src';
 
-group('@amaui/mongo/getMongoFilters', () => {
+group('@onesy/mongo/getMongoFilters', () => {
 
   to('getMongoFilters', async () => {
 

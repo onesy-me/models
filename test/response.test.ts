@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
 import express from 'express';
 
-import { assert, request } from '@amaui/test';
+import { assert, request } from '@onesy/test';
 
 import { Response } from '../src';
 
-group('@amaui/models/response', () => {
+group('@onesy/models/response', () => {
 
   group('Response', () => {
 

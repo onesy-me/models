@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { Base } from '../src';
 
-group('@amaui/models/base', () => {
+group('@onesy/models/base', () => {
 
   group('Base', () => {
 

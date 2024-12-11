@@ -1,5 +1,5 @@
-import is from '@amaui/utils/is';
-import { ValidationError } from '@amaui/errors';
+import is from '@onesy/utils/is';
+import { ValidationError } from '@onesy/errors';
 
 import { IQueryKeys } from './models';
 import getMongoOperator from './getMongoOperator';

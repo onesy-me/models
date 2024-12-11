@@ -4,11 +4,11 @@
 
 <p align='center'>
   <a target='_blank' rel='noopener noreferrer' href='#'>
-    <img src='utils/images/logo.svg' alt='amaui logo' />
+    <img src='utils/images/logo.svg' alt='onesy logo' />
   </a>
 </p>
 
-<h1 align='center'>amaui Models</h1>
+<h1 align='center'>onesy Models</h1>
 
 <p align='center'>
   Models
@@ -39,14 +39,14 @@
 ### Add
 
 ```sh
-yarn add @amaui/models 
+yarn add @onesy/models 
 ```
 
 ### Use
 
 ```javascript
   import express from 'express';
-  import { Query, Response } from '@amaui/models';
+  import { Query, Response } from '@onesy/models';
 
   async function route(req: express.Request, res: express.Response) {
     const query = Query.fromRequest(req);

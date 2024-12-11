@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { getExpressParamValue } from '../src';
 
-group('@amaui/models/getExpressParamValue', () => {
+group('@onesy/models/getExpressParamValue', () => {
 
   to('getExpressParamValue', async () => {
     const values_ = [

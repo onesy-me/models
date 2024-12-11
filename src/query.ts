@@ -1,11 +1,11 @@
 import express from 'express';
 import { Sort } from 'mongodb';
 
-import is from '@amaui/utils/is';
-import clamp from '@amaui/utils/clamp';
-import decode from '@amaui/utils/decode';
-import castParam from '@amaui/utils/castParam';
-import unflattenObject from '@amaui/utils/unflattenObject';
+import is from '@onesy/utils/is';
+import clamp from '@onesy/utils/clamp';
+import decode from '@onesy/utils/decode';
+import castParam from '@onesy/utils/castParam';
+import unflattenObject from '@onesy/utils/unflattenObject';
 
 import { Base } from './base';
 import getExpressParamValue from './getExpressParamValue';
