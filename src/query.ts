@@ -31,17 +31,12 @@ export interface IQueryObject<T = object> {
 }
 
 export interface IRequestParams {
-  path: object;
-  query: object;
-}
-
-export interface IRequestParams {
-  path: object;
-  query: object;
+  path?: any;
+  query?: any;
 }
 
 export interface IQueryFind {
-  [key: string]: object;
+  [key: string]: any;
 }
 
 export type TQueryQueriesKey = 'search' | 'api' | 'permissions' | 'aggregate' | 'find';
