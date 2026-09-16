@@ -13,13 +13,8 @@ export interface IQueryKeys {
   allowed: any[];
 }
 
-export interface IMongoSearchManyAdditional {
+export interface IMongoSearchAdditional {
   pre?: Array<object>;
   prePagination?: Array<object>;
-  post?: Array<object>;
-}
-
-export interface IMongoSearchOneAdditional {
-  pre?: Array<object>;
   post?: Array<object>;
 }

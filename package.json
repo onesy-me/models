@@ -1,6 +1,6 @@
 {
   "name": "@onesy/models",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Models",
   "repository": "https://github.com/onesy-me/models.git",
   "author": "Lazar Erić <lazareric1@proton.me>",
@@ -38,12 +38,11 @@
     "test": "yarn lint && yarn type && yarn build && yarn test:pre && yarn cov && yarn test:post"
   },
   "dependencies": {
+    "@babel/runtime": "^7.18.3",
     "@onesy/errors": "^1.0.0",
-    "@onesy/utils": "^1.0.0",
-    "@babel/runtime": "^7.18.3"
+    "@onesy/utils": "^1.0.0"
   },
   "devDependencies": {
-    "@onesy/test": "^1.0.0",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.17.12",
@@ -51,6 +50,7 @@
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.16.0",
+    "@onesy/test": "^1.0.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-json": "^4.1.0",
